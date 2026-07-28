@@ -3,6 +3,7 @@ import { Bodoni_Moda, Montserrat } from "next/font/google";
 import "./globals.css";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import { Analytics } from "@vercel/analytics/next";
 
 const bodoni = Bodoni_Moda({
   variable: "--font-display",
@@ -43,6 +44,7 @@ export default function RootLayout({
         <SiteHeader />
         <main className="flex-1">{children}</main>
         <SiteFooter />
+        <Analytics />
       </body>
     </html>
   );
