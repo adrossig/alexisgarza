@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { projects } from "@/data/projects";
+import { projectImage, projects } from "@/data/projects";
 
 const feature = projects[0];
 const secondary = projects.slice(1, 3);
@@ -115,7 +115,7 @@ export default function Page() {
             >
               <div className="relative aspect-[4/5] w-full sm:aspect-[16/12]">
                 <Image
-                  src="/Image.png"
+                  src={projectImage(feature.images?.card)}
                   alt={feature.name}
                   fill
                   sizes="(max-width: 768px) 100vw, 58vw"
@@ -132,17 +132,17 @@ export default function Page() {
               </div>
             </Link>
 
-            {/* Stacked secondary */}
-            <div className="grid gap-6 md:col-span-5">
+            {/* Stacked secondary — rows share the feature's height, however many there are */}
+            <div className="grid auto-rows-fr gap-6 md:col-span-5">
               {secondary.map((project) => (
                 <Link
                   key={project.slug}
                   href={`/portfolio/${project.slug}`}
                   className="group relative block overflow-hidden"
                 >
-                  <div className="relative aspect-[16/10] w-full">
+                  <div className="relative aspect-[16/10] w-full md:aspect-auto md:h-full">
                     <Image
-                      src="/Image.png"
+                      src={projectImage(project.images?.card)}
                       alt={project.name}
                       fill
                       sizes="(max-width: 768px) 100vw, 40vw"

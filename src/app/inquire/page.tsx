@@ -65,10 +65,10 @@ export default function InquirePage() {
                   studio@alexisgarza.com
                 </a>
                 <a
-                  href="tel:+34600000000"
+                  href="tel:+528186564134"
                   className="block transition hover:text-accent"
                 >
-                  +34 600 000 000
+                  +52 81 8656 4134
                 </a>
               </div>
             </div>

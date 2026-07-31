@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import SpacesCarousel from "@/components/SpacesCarousel";
-import { getProject, projects } from "@/data/projects";
+import { getProject, projectImage, projects } from "@/data/projects";
 
 export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
@@ -44,7 +44,7 @@ export default async function ProjectPage({
       {/* Hero — full-bleed image with overlaid title, intro, and specs */}
       <section className="relative h-[62vh] min-h-[460px] w-full overflow-hidden">
         <Image
-          src="/Image.png"
+          src={projectImage(project.images?.hero)}
           alt={project.name}
           fill
           priority
@@ -104,7 +104,7 @@ export default async function ProjectPage({
 
           <div className="relative aspect-[4/5] overflow-hidden">
             <Image
-              src="/Image.png"
+              src={projectImage(project.images?.detail)}
               alt={`${project.name} — detail`}
               fill
               sizes="(max-width: 768px) 100vw, 45vw"
@@ -129,7 +129,7 @@ export default async function ProjectPage({
             {/* Hero material still */}
             <div className="relative aspect-[4/3] overflow-hidden md:aspect-auto md:min-h-[420px]">
               <Image
-                src="/Image.png"
+                src={projectImage(project.images?.palette)}
                 alt={`${project.name} — materials palette`}
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
@@ -141,17 +141,17 @@ export default async function ProjectPage({
             <div className="grid gap-6 md:grid-rows-[auto_1fr]">
               <div className="grid gap-6 sm:grid-cols-2">
                 {project.materials.map((material) => (
-                  <figure key={material} className="relative aspect-[4/3] overflow-hidden">
+                  <figure key={material.name} className="relative aspect-[4/3] overflow-hidden">
                     <Image
-                      src="/Image.png"
-                      alt={material}
+                      src={projectImage(material.image)}
+                      alt={material.name}
                       fill
                       sizes="(max-width: 640px) 100vw, 25vw"
                       className="img-grade object-cover"
                     />
                     <span className="grain" />
                     <figcaption className="label-caps absolute bottom-3 left-3 bg-foreground/80 px-3 py-1.5 text-background">
-                      {material}
+                      {material.name}
                     </figcaption>
                   </figure>
                 ))}
@@ -172,7 +172,7 @@ export default async function ProjectPage({
 
       {/* Spaces carousel */}
       <section className="py-16 md:py-20">
-        <SpacesCarousel spaces={project.spaces} />
+        <SpacesCarousel spaces={project.spaces} orientation={project.orientation} />
       </section>
 
       {/* Next-step CTA */}

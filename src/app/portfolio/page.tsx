@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { projects } from "@/data/projects";
+import { projectImage, projects } from "@/data/projects";
 
 export const metadata: Metadata = {
   title: "Portfolio — Alexis Garza",
@@ -29,7 +29,7 @@ export default function PortfolioPage() {
             <Link key={p.slug} href={`/portfolio/${p.slug}`} className="group block">
               <div className="relative aspect-[4/5] overflow-hidden">
                 <Image
-                  src="/Image.png"
+                  src={projectImage(p.images?.card)}
                   alt={p.name}
                   fill
                   sizes="(max-width: 640px) 100vw, 50vw"

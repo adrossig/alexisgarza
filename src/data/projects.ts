@@ -1,3 +1,6 @@
+/** Stand-in still used by projects that have not been photographed yet. */
+const PLACEHOLDER_IMAGE = "/Image.png";
+
 export type Project = {
   slug: string;
   name: string;
@@ -8,144 +11,172 @@ export type Project = {
   intro: string;
   /** Hero spec rows — year, size, scope. */
   facts: { label: string; value: string }[];
+  /** Photography per layout slot; each falls back to the placeholder. */
+  images?: {
+    card?: string;
+    hero?: string;
+    detail?: string;
+    palette?: string;
+  };
+  /** Shape of the source photography — sizes the Spaces slides to avoid hard crops. */
+  orientation?: "portrait" | "landscape";
   philosophyTitle: string;
   philosophyBody: string[];
   paletteTitle: string;
-  materials: string[];
+  materials: { name: string; image?: string }[];
   hardware: { title: string; body: string };
-  spaces: { name: string; material: string }[];
+  spaces: { name: string; material: string; image?: string }[];
 };
+
+/** Resolve an optional project image to a renderable src. */
+export function projectImage(src?: string): string {
+  return src ?? PLACEHOLDER_IMAGE;
+}
 
 export const projects: Project[] = [
   {
-    slug: "coastal-retreat",
-    name: "Coastal Retreat",
-    place: "Marbella",
+    slug: "los-vitrales",
+    name: "Los Vitrales",
+    place: "Monterrey",
     year: "2025",
     category: "Residential",
     summary:
-      "A sun-washed family home where linen, lime plaster, and weathered oak meet the sea.",
+      "A double-height apartment in Monterrey where sheer linen, white marble, and black lacquer hold a single, quiet line.",
     intro:
-      "A study in light and tactile warmth. Restoring a mid-century structure into a sanctuary of raw minimalism and handcrafted details overlooking the Mediterranean.",
+      "An apartment built around its own light. Nine metres of glass, veiled in sheer linen, wash a white marble floor from morning to dusk — and every other surface was chosen to stay out of the way.",
     facts: [
       { label: "Year", value: "2025" },
-      { label: "Size", value: "320 SQM" },
-      { label: "Scope", value: "Full renovation" },
+      { label: "Size", value: "240 SQM" },
+      { label: "Scope", value: "Interiors & styling" },
     ],
-    philosophyTitle: "The Philosophy of Sun and Stone.",
+    images: {
+      card: "/projects/los-vitrales/01-living-room-atrium.jpeg",
+      hero: "/projects/los-vitrales/01-living-room-atrium.jpeg",
+      detail: "/projects/los-vitrales/02-living-dining.jpeg",
+      palette: "/projects/los-vitrales/04-principal-suite.jpeg",
+    },
+    orientation: "portrait",
+    philosophyTitle: "The Philosophy of Light and Lacquer.",
     philosophyBody: [
-      "Our approach to Coastal Retreat was deeply rooted in the concept of 'sophisticated artisanship'. We sought to honor the original brutalist bones of the structure while introducing a layer of profound softness.",
-      "By pulling the landscape inward, removing strict boundaries between interior and exterior, we created a living space that feels like a natural extension of the rugged coastal cliffs.",
+      "The apartment takes its name from the glass that defines it. Rather than dress those windows, we veiled them — floor-to-ceiling sheers that turn Monterrey's hard northern light into something diffuse and even, and let the double-height volume read as one uninterrupted wall of white.",
+      "Against that softness we placed weight: black lacquer, honed marble, deep-pile wool. The public rooms stay bright and almost weightless; the private ones go dark and enveloping. One apartment, two temperatures, held together by a single material vocabulary.",
     ],
-    paletteTitle: "Tactile Warmth.",
-    materials: ["Reclaimed walnut", "Italian bouclé"],
+    paletteTitle: "White Light, Black Weight.",
+    materials: [
+      {
+        name: "Calacatta porcelain",
+        image: "/projects/los-vitrales/03-guest-suite.jpeg",
+      },
+      {
+        name: "Fluted blackwood",
+        image: "/projects/los-vitrales/04-principal-suite.jpeg",
+      },
+    ],
     hardware: {
-      title: "Custom Hardware",
-      body: "Every handle and fixture was cast in unlacquered brass, designed to age and patina gracefully with the sea air, recording the history of the home over time.",
+      title: "Concealed Detailing",
+      body: "Curtain tracks, linear diffusers, and cove lighting were all recessed into the ceiling plane, so nothing interrupts the drop of the fabric. What you notice is the light, never the fitting that delivers it.",
     },
     spaces: [
-      { name: "The Kitchen", material: "Monolithic marble" },
-      { name: "The Living Room", material: "Lime plaster" },
-      { name: "The Principal Suite", material: "Washed linen" },
-      { name: "The Terrace", material: "Weathered oak" },
+      {
+        name: "The Double-Height Living Room",
+        material: "Sheer linen",
+        image: "/projects/los-vitrales/01-living-room-atrium.jpeg",
+      },
+      {
+        name: "The Dining Room",
+        material: "Black lacquer",
+        image: "/projects/los-vitrales/02-living-dining.jpeg",
+      },
+      {
+        name: "The Guest Suite",
+        material: "Cove lighting",
+        image: "/projects/los-vitrales/03-guest-suite.jpeg",
+      },
+      {
+        name: "The Principal Suite",
+        material: "Fluted blackwood",
+        image: "/projects/los-vitrales/04-principal-suite.jpeg",
+      },
+      {
+        name: "The Fitness Nook",
+        material: "Blackout drape",
+        image: "/projects/los-vitrales/05-fitness-nook.jpeg",
+      },
     ],
   },
   {
-    slug: "the-linen-house",
-    name: "The Linen House",
-    place: "Mexico City",
+    slug: "los-cedros",
+    name: "Los Cedros",
+    place: "Monterrey",
     year: "2024",
-    category: "Hospitality",
-    summary:
-      "A nine-room boutique hotel wrapped in warm neutrals, clay tile, and hand-loomed textiles.",
-    intro:
-      "A restored townhouse turned intimate hotel, where every guest feels like they are staying with a well-travelled friend. Nine rooms, one shared language of material.",
-    facts: [
-      { label: "Year", value: "2024" },
-      { label: "Size", value: "9 keys" },
-      { label: "Scope", value: "Interiors & FF&E" },
-    ],
-    philosophyTitle: "The Philosophy of Clay and Thread.",
-    philosophyBody: [
-      "Each room was designed around a single hero textile, giving nine spaces a shared language without a single one repeating. The house reads as collected, never specified.",
-      "We restored the original mouldings and ironwork, then let contemporary furniture sit gently against them — a conversation between two centuries rather than an argument.",
-    ],
-    paletteTitle: "Woven Neutrals.",
-    materials: ["Hand-loomed cotton", "Barro clay tile"],
-    hardware: {
-      title: "Custom Hardware",
-      body: "Door pulls and hooks were forged by a family workshop in Oaxaca, each one slightly irregular, so the hand of the maker stays present in every room.",
-    },
-    spaces: [
-      { name: "The Courtyard Bar", material: "Barro clay" },
-      { name: "The Reading Room", material: "Aged brass" },
-      { name: "Room Nº4", material: "Hand-loomed cotton" },
-      { name: "The Stair Hall", material: "Restored ironwork" },
-    ],
-  },
-  {
-    slug: "atelier-no-7",
-    name: "Atelier Nº7",
-    place: "Lisbon",
-    year: "2024",
-    category: "Retail",
-    summary:
-      "A jewellery atelier and showroom where raw stone meets soft, gallery-like light.",
-    intro:
-      "A workshop and showroom in one, designed to feel precious without feeling cold — a space that flatters both the maker and the made.",
-    facts: [
-      { label: "Year", value: "2024" },
-      { label: "Size", value: "85 SQM" },
-      { label: "Scope", value: "Retail concept" },
-    ],
-    philosophyTitle: "The Philosophy of Stone and Light.",
-    philosophyBody: [
-      "We set matte micro-cement against travertine plinths so the pieces read like small sculptures under focused, warm light — a gallery that happens to sell.",
-      "The working bench sits in full view, making craft part of the experience rather than something hidden in the back of the house.",
-    ],
-    paletteTitle: "Quiet Minerals.",
-    materials: ["Roman travertine", "Matte micro-cement"],
-    hardware: {
-      title: "Custom Hardware",
-      body: "Display fittings were machined from solid brass and left unlacquered, so the surfaces the staff touch daily darken faster than those they do not.",
-    },
-    spaces: [
-      { name: "The Showroom", material: "Roman travertine" },
-      { name: "The Bench", material: "Solid brass" },
-      { name: "The Curved Wall", material: "Micro-cement" },
-    ],
-  },
-  {
-    slug: "verde-loft",
-    name: "Verde Loft",
-    place: "Barcelona",
-    year: "2023",
     category: "Residential",
     summary:
-      "An industrial loft softened with greenery, vintage finds, and deep, grounding tones.",
+      "A family home in warm neutrals — blush plaster, olive velvet, woven grasscloth, and brushed brass.",
     intro:
-      "A hard-edged industrial shell made tender — a home for a couple who collect art, plants, and stories, and needed room for all three.",
+      "A house that entertains and a house that exhales, held in one palette. Formal rooms for guests, softer rooms for the family, and not a single hard edge between the two.",
     facts: [
-      { label: "Year", value: "2023" },
-      { label: "Size", value: "140 SQM" },
-      { label: "Scope", value: "Interiors & joinery" },
+      { label: "Year", value: "2024" },
+      { label: "Size", value: "310 SQM" },
+      { label: "Scope", value: "Full interiors & styling" },
     ],
-    philosophyTitle: "The Philosophy of Concrete and Green.",
+    images: {
+      card: "/projects/los-cedros/01-living-room.jpg",
+      hero: "/projects/los-cedros/01-living-room.jpg",
+      detail: "/projects/los-cedros/05-dining-detail.jpg",
+      palette: "/projects/los-cedros/03-living-room-chandelier.jpg",
+    },
+    orientation: "landscape",
+    philosophyTitle: "The Philosophy of Warmth and Restraint.",
     philosophyBody: [
-      "We kept the raw concrete and steel, then layered in walnut, olive-toned upholstery, and a wall of plants to warm a volume that had spent forty years being cold.",
-      "Vintage pieces were sourced over several months so the loft reads as collected over time, never bought in one afternoon.",
+      "The brief asked for a home that could receive guests without ever feeling staged. We answered with one warm neutral palette carried through every room — blush and greige plaster, limed oak, woven grasscloth — so the house reads as continuous rather than decorated room by room.",
+      "Colour arrives only as depth, never as contrast. Olive velvet on the wing chairs, a deeper olive on the family room walls, bronze and brushed brass in the hardware. Everything else steps back and lets the light off the terrace do the work.",
     ],
-    paletteTitle: "Grounded Tones.",
-    materials: ["American walnut", "Olive velvet"],
+    paletteTitle: "Blush, Olive, Brass.",
+    materials: [
+      {
+        name: "Olive velvet",
+        image: "/projects/los-cedros/02-living-room-seating.jpg",
+      },
+      {
+        name: "Woven grasscloth",
+        image: "/projects/los-cedros/08-principal-suite.jpg",
+      },
+    ],
     hardware: {
-      title: "Custom Hardware",
-      body: "Blackened steel details were drawn from the building's original window frames, then repeated at every handle, shelf bracket, and stair rail.",
+      title: "Brass and Bronze",
+      body: "Table frames, lamp bases, and cabinet pulls were kept to a single family of brushed brass, warmed by bronze accents — enough to catch the light at dusk, never enough to announce itself.",
     },
     spaces: [
-      { name: "The Kitchen Island", material: "American walnut" },
-      { name: "The Plant Wall", material: "Raw concrete" },
-      { name: "The Studio", material: "Blackened steel" },
-      { name: "The Mezzanine", material: "Olive velvet" },
+      {
+        name: "The Living Room",
+        material: "Blush plaster",
+        image: "/projects/los-cedros/01-living-room.jpg",
+      },
+      {
+        name: "The Salon",
+        material: "Olive velvet",
+        image: "/projects/los-cedros/02-living-room-seating.jpg",
+      },
+      {
+        name: "The Dining Room",
+        material: "Limed oak",
+        image: "/projects/los-cedros/04-dining-room.jpg",
+      },
+      {
+        name: "The Family Room",
+        material: "Olive grasscloth",
+        image: "/projects/los-cedros/06-family-room.jpg",
+      },
+      {
+        name: "The Principal Suite",
+        material: "Woven grasscloth",
+        image: "/projects/los-cedros/08-principal-suite.jpg",
+      },
+      {
+        name: "The Guest Suite",
+        material: "Pleated linen",
+        image: "/projects/los-cedros/09-guest-suite.jpg",
+      },
     ],
   },
 ];
