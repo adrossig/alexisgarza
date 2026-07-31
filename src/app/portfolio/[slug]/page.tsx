@@ -39,51 +39,90 @@ export default async function ProjectPage({
     notFound();
   }
 
+  const isPortrait = project.orientation === "portrait";
+
+  const facts = (
+    <dl>
+      {project.facts.map((fact) => (
+        <div
+          key={fact.label}
+          className="flex items-baseline justify-between gap-6 border-t border-foreground/15 py-3 last:border-b"
+        >
+          <dt className="label-caps text-muted">{fact.label}</dt>
+          <dd className="label-caps text-right">{fact.value}</dd>
+        </div>
+      ))}
+    </dl>
+  );
+
   return (
     <article>
-      {/* Hero — full-bleed image with overlaid title, intro, and specs */}
-      <section className="relative h-[62vh] min-h-[460px] w-full overflow-hidden">
-        <Image
-          src={projectImage(project.images?.hero)}
-          alt={project.name}
-          fill
-          priority
-          sizes="100vw"
-          className="img-grade object-cover"
-        />
-        <span className="grain" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
+      {isPortrait ? (
+        /* Hero, portrait — a full-bleed band can only ever show a slice of an
+           upright frame, so the image sits beside the copy at its own ratio. */
+        <section className="mx-auto max-w-[1440px] px-5 pt-10 md:px-10 md:pt-14 lg:px-20">
+          <div className="grid gap-10 md:grid-cols-2 md:gap-16 lg:gap-20">
+            <div className="relative aspect-[3/4] overflow-hidden">
+              <Image
+                src={projectImage(project.images?.hero)}
+                alt={project.name}
+                fill
+                priority
+                sizes="(max-width: 768px) 100vw, 48vw"
+                className="img-grade object-cover"
+              />
+              <span className="grain" />
+            </div>
 
-        <div className="absolute inset-x-0 bottom-0">
-          <div className="mx-auto max-w-[1440px] px-5 pb-10 md:px-10 md:pb-12 lg:px-20">
-            <div className="grid items-end gap-8 md:grid-cols-3 md:gap-16">
-              <div className="md:col-span-2">
-                <p className="label-caps text-accent">
-                  {project.category} / {project.place}
-                </p>
-                <h1 className="mt-3 font-display text-5xl font-semibold leading-[1.02] tracking-[-0.02em] md:text-7xl">
-                  {project.name}.
-                </h1>
-                <p className="mt-5 max-w-lg font-light leading-relaxed text-muted">
-                  {project.intro}
-                </p>
-              </div>
-
-              <dl className="md:pb-2">
-                {project.facts.map((fact) => (
-                  <div
-                    key={fact.label}
-                    className="flex items-baseline justify-between gap-6 border-t border-foreground/15 py-3 last:border-b"
-                  >
-                    <dt className="label-caps text-muted">{fact.label}</dt>
-                    <dd className="label-caps text-right">{fact.value}</dd>
-                  </div>
-                ))}
-              </dl>
+            <div className="flex flex-col justify-end md:pb-2">
+              <p className="label-caps text-accent">
+                {project.category} / {project.place}
+              </p>
+              <h1 className="mt-3 font-display text-5xl font-semibold leading-[1.02] tracking-[-0.02em] md:text-7xl">
+                {project.name}.
+              </h1>
+              <p className="mt-5 max-w-lg font-light leading-relaxed text-muted">
+                {project.intro}
+              </p>
+              <div className="mt-10">{facts}</div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      ) : (
+        /* Hero, landscape — full-bleed image with overlaid title, intro, and specs */
+        <section className="relative h-[62vh] min-h-[460px] w-full overflow-hidden">
+          <Image
+            src={projectImage(project.images?.hero)}
+            alt={project.name}
+            fill
+            priority
+            sizes="100vw"
+            className="img-grade object-cover"
+          />
+          <span className="grain" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
+
+          <div className="absolute inset-x-0 bottom-0">
+            <div className="mx-auto max-w-[1440px] px-5 pb-10 md:px-10 md:pb-12 lg:px-20">
+              <div className="grid items-end gap-8 md:grid-cols-3 md:gap-16">
+                <div className="md:col-span-2">
+                  <p className="label-caps text-accent">
+                    {project.category} / {project.place}
+                  </p>
+                  <h1 className="mt-3 font-display text-5xl font-semibold leading-[1.02] tracking-[-0.02em] md:text-7xl">
+                    {project.name}.
+                  </h1>
+                  <p className="mt-5 max-w-lg font-light leading-relaxed text-muted">
+                    {project.intro}
+                  </p>
+                </div>
+
+                <div className="md:pb-2">{facts}</div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Philosophy — copy left, image right */}
       <section className="mx-auto max-w-[1440px] px-5 py-16 md:px-10 md:py-20 lg:px-20">
@@ -126,8 +165,15 @@ export default async function ProjectPage({
           </div>
 
           <div className="mt-10 grid gap-6 md:grid-cols-2">
-            {/* Hero material still */}
-            <div className="relative aspect-[4/3] overflow-hidden md:aspect-auto md:min-h-[420px]">
+            {/* Hero material still — upright frames keep their own ratio rather
+                than stretching to the neighbouring column's height */}
+            <div
+              className={`relative overflow-hidden ${
+                isPortrait
+                  ? "aspect-[3/4]"
+                  : "aspect-[4/3] md:aspect-auto md:min-h-[420px]"
+              }`}
+            >
               <Image
                 src={projectImage(project.images?.palette)}
                 alt={`${project.name} — materials palette`}
