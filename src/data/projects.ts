@@ -179,6 +179,145 @@ export const projects: Project[] = [
       },
     ],
   },
+  {
+    slug: "gardenia",
+    name: "Gardenia",
+    place: "Monterrey",
+    year: "2023",
+    category: "Residential",
+    summary:
+      "A house turned toward the Sierra Madre — charcoal plaster, raw brick, and tufted cream over dark polished stone.",
+    intro:
+      "The mountain does the decorating. Every principal room was planned around a sightline to the Sierra Madre, and the interior was kept dark and quiet so the view stays the brightest thing in it.",
+    facts: [
+      { label: "Year", value: "2023" },
+      { label: "Size", value: "380 SQM" },
+      { label: "Scope", value: "Interiors & furniture" },
+    ],
+    images: {
+      card: "/projects/gardenia/01-living-room.jpg",
+      hero: "/projects/gardenia/01-living-room.jpg",
+      detail: "/projects/gardenia/06-lounge-detail.jpg",
+      palette: "/projects/gardenia/02-dining-room.jpg",
+    },
+    orientation: "landscape",
+    philosophyTitle: "The Philosophy of Brick and Shadow.",
+    philosophyBody: [
+      "We inherited two strong materials — exposed brick and a dark polished stone floor — and chose to lean into both rather than soften them. Charcoal plaster was drawn across the main walls so the room reads as a shadow box, and the glazing at either end becomes the only real source of colour.",
+      "Warmth comes back in through the furniture: tufted cream upholstery, cognac leather, and pale birch ply built by a local workshop. Nothing matches exactly, which is what keeps a dark room from feeling like a hotel lobby.",
+    ],
+    paletteTitle: "Charcoal, Brick, Birch.",
+    materials: [
+      { name: "Charcoal plaster", image: "/projects/gardenia/01-living-room.jpg" },
+      { name: "Birch ply", image: "/projects/gardenia/06-lounge-detail.jpg" },
+    ],
+    hardware: {
+      title: "Screened Light",
+      body: "Solar-screen rollers were specified at every opening, woven open enough to keep the mountain legible through the fabric but dense enough to kill the afternoon glare off the stone floor.",
+    },
+    spaces: [
+      {
+        name: "The Living Room",
+        material: "Charcoal plaster",
+        image: "/projects/gardenia/01-living-room.jpg",
+      },
+      {
+        name: "The Dining Room",
+        material: "Green marble",
+        image: "/projects/gardenia/02-dining-room.jpg",
+      },
+      {
+        name: "The Terrace Lounge",
+        material: "Solar screen",
+        image: "/projects/gardenia/03-terrace-lounge.jpg",
+      },
+      {
+        name: "The Principal Suite",
+        material: "Slate blue",
+        image: "/projects/gardenia/04-principal-suite.jpg",
+      },
+      {
+        name: "The Kitchen",
+        material: "Raw brick",
+        image: "/projects/gardenia/05-kitchen-garden-view.jpg",
+      },
+      {
+        name: "The Games Corner",
+        material: "Birch ply",
+        image: "/projects/gardenia/06-lounge-detail.jpg",
+      },
+    ],
+  },
+  {
+    slug: "las-misiones",
+    name: "Las Misiones",
+    place: "Monterrey",
+    year: "2023",
+    category: "Residential",
+    summary:
+      "An upper-floor home among the oaks, where sheer shades turn treetop light into a soft, even wash.",
+    intro:
+      "A home that sits in the canopy. Sheer horizontal shades run the full length of the glazing, so the oaks outside arrive as filtered green light rather than as a view you have to look at.",
+    facts: [
+      { label: "Year", value: "2023" },
+      { label: "Size", value: "260 SQM" },
+      { label: "Scope", value: "Interiors & furniture" },
+    ],
+    images: {
+      card: "/projects/las-misiones/01-living-room.jpg",
+      hero: "/projects/las-misiones/01-living-room.jpg",
+      detail: "/projects/las-misiones/05-art-detail.jpg",
+      palette: "/projects/las-misiones/04-reading-corner.jpg",
+    },
+    orientation: "landscape",
+    philosophyTitle: "The Philosophy of Filtered Light.",
+    philosophyBody: [
+      "The whole scheme rests on one decision: shade the glass rather than dress it. Sheer horizontal blinds diffuse the treetop light into something flat and even, which let us keep the walls plain white and the ceilings uncluttered.",
+      "Against that neutral shell we set weight and warmth — dark walnut casework, cognac leather, pale grey hide — and left the colour to the owners' own collection of folk ceramics and textile art. The rooms are a backdrop; the collection is the subject.",
+    ],
+    paletteTitle: "Cognac, Walnut, Grey.",
+    materials: [
+      {
+        name: "Cognac leather",
+        image: "/projects/las-misiones/04-reading-corner.jpg",
+      },
+      {
+        name: "Dark walnut",
+        image: "/projects/las-misiones/02-sitting-room.jpg",
+      },
+    ],
+    hardware: {
+      title: "Layered Shading",
+      body: "Every opening carries two layers — a sheer horizontal blind for daytime diffusion and an opaque roller behind it — so a room can go from filtered green to fully dark without a curtain ever appearing.",
+    },
+    spaces: [
+      {
+        name: "The Living Room",
+        material: "Sheer shading",
+        image: "/projects/las-misiones/01-living-room.jpg",
+      },
+      {
+        name: "The Sitting Room",
+        material: "Dark walnut",
+        image: "/projects/las-misiones/02-sitting-room.jpg",
+      },
+      {
+        name: "The Salon",
+        material: "Grey leather",
+        image: "/projects/las-misiones/03-living-room-wide.jpg",
+      },
+      {
+        name: "The Reading Corner",
+        material: "Cognac leather",
+        image: "/projects/las-misiones/04-reading-corner.jpg",
+      },
+      {
+        name: "The Collection",
+        material: "Folk ceramic",
+        image: "/projects/las-misiones/05-art-detail.jpg",
+      },
+    ],
+  },
 ];
 
 export function getProject(slug: string): Project | undefined {
