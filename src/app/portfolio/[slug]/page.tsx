@@ -176,22 +176,32 @@ export default async function ProjectPage({
             </div>
 
             <div className="grid gap-6 md:grid-rows-[auto_1fr]">
-              <div className="grid gap-6 sm:grid-cols-2">
-                {project.materials.map((material) => (
-                  <figure key={material.name} className="relative aspect-[4/3] overflow-hidden">
-                    <Image
-                      src={projectImage(material.image)}
-                      alt={material.name}
-                      fill
-                      sizes="(max-width: 640px) 100vw, 25vw"
-                      className="img-grade object-cover"
-                    />
-                    <span className="grain" />
-                    <figcaption className="label-caps absolute bottom-3 left-3 bg-foreground/80 px-3 py-1.5 text-background">
-                      {material.name}
-                    </figcaption>
-                  </figure>
-                ))}
+              {/* Tiles are top-aligned rather than stretched: a stretched grid
+                  row would set their height and override the ratio below. */}
+              <div className="grid items-start gap-6 sm:grid-cols-2">
+                {project.materials.map((material) => {
+                  const src = projectImage(material.image);
+
+                  return (
+                    <figure
+                      key={material.name}
+                      className="relative overflow-hidden"
+                      style={{ aspectRatio: imageAspect(src) }}
+                    >
+                      <Image
+                        src={src}
+                        alt={material.name}
+                        fill
+                        sizes="(max-width: 640px) 100vw, 25vw"
+                        className="img-grade object-cover"
+                      />
+                      <span className="grain" />
+                      <figcaption className="label-caps absolute bottom-3 left-3 bg-foreground/80 px-3 py-1.5 text-background">
+                        {material.name}
+                      </figcaption>
+                    </figure>
+                  );
+                })}
               </div>
 
               <div className="bg-card-low p-8 md:p-10">
