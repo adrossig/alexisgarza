@@ -17,8 +17,26 @@
   /* Tertiary — Polished Gold */
   --gold: #826322;
 
+  /* Lightest text that still clears 4.5:1 on --background (placeholders, hints) */
+  --placeholder: #6f5d55;
+
   /* Soft terracotta-tinted shadow */
   --shadow-warm: 0 24px 60px -20px rgba(160, 82, 45, 0.18);
+
+  /* Editorial gutters — one source of truth for the page shell */
+  --gutter: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --gutter: 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --gutter: 5rem;
+  }
 }
 
 @theme inline {
@@ -32,12 +50,47 @@
   --color-accent: var(--accent);
   --color-accent-strong: var(--accent-strong);
   --color-gold: var(--gold);
+  --color-placeholder: var(--placeholder);
   --font-display: var(--font-display);
   --font-body: var(--font-body);
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+/* Keyboard users get a single, consistent ring everywhere. Never removed. */
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 1px;
+}
+
+/* Over imagery the gold alone can vanish, so pair it with a light halo */
+.on-image:focus-visible {
+  outline-color: var(--background);
+  box-shadow: 0 0 0 5px rgba(28, 27, 27, 0.55);
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--background);
+}
+
+/* Motion is decoration here — every bit of it is opt-out */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 body {
@@ -51,12 +104,47 @@ body {
   font-family: var(--font-display), Georgia, serif;
 }
 
+/* The page shell — same gutters and measure on every section */
+.shell {
+  margin-inline: auto;
+  max-width: 1440px;
+  padding-inline: var(--gutter);
+}
+
 /* Editorial labels — high-end architectural signage */
 .label-caps {
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.15em;
   text-transform: uppercase;
+}
+
+/* Caption-scale label, for overlays on smaller cards */
+.label-caps-xs {
+  font-size: 0.65rem;
+}
+
+/* Long-form label — legal lines, copyright, meta rows */
+.label-caps-quiet {
+  font-weight: 400;
+  letter-spacing: 0.12em;
+}
+
+/* Visible only once focused — first stop in the tab order */
+.skip-link {
+  position: absolute;
+  left: var(--gutter);
+  top: 0;
+  z-index: 50;
+  transform: translateY(-150%);
+  background: var(--foreground);
+  color: var(--background);
+  padding: 0.75rem 1.25rem;
+  transition: transform 0.2s ease;
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0.75rem);
 }
 
 /* Warm color grade on imagery */
@@ -76,25 +164,17 @@ body {
 
 /* Full-bleed horizontal track whose first item lines up with the 1440px container edge */
 .bleed-track {
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
   /* Keep snap points inside the padding so the first slide rests on the container edge */
-  scroll-padding-left: 1.25rem;
-}
-
-@media (min-width: 768px) {
-  .bleed-track {
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
-    scroll-padding-left: 2.5rem;
-  }
+  scroll-padding-left: var(--gutter);
 }
 
 @media (min-width: 1024px) {
   .bleed-track {
-    padding-left: max(5rem, calc((100% - 1440px) / 2 + 5rem));
-    padding-right: max(5rem, calc((100% - 1440px) / 2 + 5rem));
-    scroll-padding-left: max(5rem, calc((100% - 1440px) / 2 + 5rem));
+    padding-left: max(var(--gutter), calc((100% - 1440px) / 2 + var(--gutter)));
+    padding-right: max(var(--gutter), calc((100% - 1440px) / 2 + var(--gutter)));
+    scroll-padding-left: max(var(--gutter), calc((100% - 1440px) / 2 + var(--gutter)));
   }
 }
 

@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { ArrowLeft, ArrowRight } from "@/components/icons";
 import { projectImage } from "@/data/projects";
 
 type Space = {
@@ -30,6 +31,12 @@ const FRICTION = 0.94;
 const MIN_VELOCITY = 0.08;
 /** Weight of the newest sample when smoothing drag velocity. */
 const VELOCITY_SMOOTHING = 0.75;
+/** Sub-pixel scroll offsets shouldn't keep an edge button enabled. */
+const EDGE_TOLERANCE = 2;
+
+function prefersReducedMotion(): boolean {
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
 
 export default function SpacesCarousel({
   spaces,
@@ -42,6 +49,25 @@ export default function SpacesCarousel({
   const trackRef = useRef<HTMLDivElement>(null);
   const drag = useRef({ active: false, lastX: 0, velocity: 0, moved: 0 });
   const glideFrame = useRef<number | null>(null);
+  const [edges, setEdges] = useState({ start: true, end: false });
+
+  // Keep the arrows honest about which directions are still available.
+  const syncEdges = useCallback(() => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    const maxScroll = track.scrollWidth - track.clientWidth;
+    setEdges({
+      start: track.scrollLeft <= EDGE_TOLERANCE,
+      end: track.scrollLeft >= maxScroll - EDGE_TOLERANCE,
+    });
+  }, []);
+
+  useEffect(() => {
+    syncEdges();
+    window.addEventListener("resize", syncEdges);
+    return () => window.removeEventListener("resize", syncEdges);
+  }, [syncEdges, spaces]);
 
   const stopGlide = useCallback(() => {
     if (glideFrame.current !== null) {
@@ -85,7 +111,21 @@ export default function SpacesCarousel({
     stopGlide();
     const firstSlide = track.firstElementChild as HTMLElement | null;
     const step = firstSlide ? firstSlide.offsetWidth + 24 : track.clientWidth;
-    track.scrollBy({ left: direction * step, behavior: "smooth" });
+    track.scrollBy({
+      left: direction * step,
+      behavior: prefersReducedMotion() ? "auto" : "smooth",
+    });
+  }
+
+  // Arrow keys pan the track once it holds focus, matching the button controls.
+  function onKeyDown(event: React.KeyboardEvent<HTMLDivElement>) {
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      scrollBy(1);
+    } else if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      scrollBy(-1);
+    }
   }
 
   // Click-and-drag panning. Touch is left to the browser's native scrolling.
@@ -125,35 +165,45 @@ export default function SpacesCarousel({
 
   return (
     <>
-      <div className="mx-auto flex max-w-[1440px] items-end justify-between gap-6 px-5 md:px-10 lg:px-20">
-        <h2 className="font-display text-4xl font-medium md:text-5xl">Spaces.</h2>
+      <div className="shell flex items-end justify-between gap-6">
+        <h2 id="spaces-heading" className="font-display text-4xl font-medium md:text-5xl">
+          Spaces.
+        </h2>
         <div className="flex gap-3">
           <button
             type="button"
             onClick={() => scrollBy(-1)}
+            disabled={edges.start}
             aria-label="Previous space"
-            className="flex h-11 w-11 items-center justify-center border border-foreground/30 transition-colors hover:border-foreground hover:bg-foreground hover:text-background"
+            className="flex h-11 w-11 cursor-pointer items-center justify-center border border-foreground/30 transition-colors hover:border-foreground hover:bg-foreground hover:text-background disabled:cursor-default disabled:border-foreground/15 disabled:bg-transparent disabled:text-foreground/30"
           >
-            ←
+            <ArrowLeft className="h-4 w-4" />
           </button>
           <button
             type="button"
             onClick={() => scrollBy(1)}
+            disabled={edges.end}
             aria-label="Next space"
-            className="flex h-11 w-11 items-center justify-center border border-foreground/30 transition-colors hover:border-foreground hover:bg-foreground hover:text-background"
+            className="flex h-11 w-11 cursor-pointer items-center justify-center border border-foreground/30 transition-colors hover:border-foreground hover:bg-foreground hover:text-background disabled:cursor-default disabled:border-foreground/15 disabled:bg-transparent disabled:text-foreground/30"
           >
-            →
+            <ArrowRight className="h-4 w-4" />
           </button>
         </div>
       </div>
 
       <div
         ref={trackRef}
+        role="group"
+        tabIndex={0}
+        aria-labelledby="spaces-heading"
+        aria-roledescription="carousel"
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={endDrag}
         onPointerCancel={endDrag}
         onWheel={stopGlide}
+        onScroll={syncEdges}
+        onKeyDown={onKeyDown}
         className="bleed-track mt-10 flex cursor-grab touch-pan-y select-none gap-6 overflow-x-auto overscroll-x-contain pb-2 will-change-scroll active:cursor-grabbing [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {spaces.map((space, i) => (

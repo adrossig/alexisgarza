@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import CallToAction from "@/components/CallToAction";
 
 export const metadata: Metadata = {
   title: "Philosophy — Alexis Garza",
@@ -68,7 +69,7 @@ export default function PhilosophyPage() {
 
       {/* Sophisticated Artisanship + quote — tonal layer */}
       <section className="bg-card">
-        <div className="mx-auto max-w-[1440px] px-5 py-16 md:px-10 md:py-20 lg:px-20">
+        <div className="shell py-16 md:py-20">
           <div className="grid gap-12 md:grid-cols-2 md:gap-20">
             <div>
               <h2 className="font-display text-4xl font-medium leading-tight">
@@ -133,7 +134,7 @@ export default function PhilosophyPage() {
       </section>
 
       {/* The Process */}
-      <section className="mx-auto max-w-[1440px] px-5 py-16 md:px-10 md:py-20 lg:px-20">
+      <section className="shell py-16 md:py-20">
         <div className="text-center">
           <h2 className="font-display text-4xl font-medium md:text-5xl">
             The Process
@@ -160,7 +161,7 @@ export default function PhilosophyPage() {
 
       {/* Recognition & Awards — tonal layer */}
       <section className="bg-card">
-        <div className="mx-auto max-w-[1440px] px-5 py-16 md:px-10 md:py-20 lg:px-20">
+        <div className="shell py-16 md:py-20">
           <div className="grid gap-12 md:grid-cols-2 md:gap-20">
             <div>
               <h2 className="font-display text-4xl font-medium leading-tight">
@@ -192,7 +193,7 @@ export default function PhilosophyPage() {
       </section>
 
       {/* In the Press */}
-      <section className="mx-auto max-w-[1440px] px-5 py-16 md:px-10 md:py-20 lg:px-20">
+      <section className="shell py-16 md:py-20">
         <div className="text-center">
           <h2 className="font-display text-4xl font-medium md:text-5xl">
             In the Press
@@ -218,6 +219,8 @@ export default function PhilosophyPage() {
           ))}
         </ul>
       </section>
+
+      <CallToAction heading="Ready to start your own project?" />
     </>
   );
 }

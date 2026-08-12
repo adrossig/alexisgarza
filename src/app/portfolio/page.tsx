@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import CallToAction from "@/components/CallToAction";
 import { projectImage, projects } from "@/data/projects";
 
 export const metadata: Metadata = {
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
 export default function PortfolioPage() {
   return (
     <>
-      <section className="mx-auto max-w-[1440px] px-5 pb-10 pt-14 md:px-10 md:pt-20 lg:px-20">
+      <section className="shell pb-10 pt-14 md:pt-20">
         <p className="label-caps text-accent">Portfolio</p>
         <h1 className="mt-6 font-display text-5xl font-semibold leading-[1.05] tracking-[-0.02em] md:text-7xl">
           Selected Works
@@ -23,7 +24,7 @@ export default function PortfolioPage() {
         </p>
       </section>
 
-      <section className="mx-auto max-w-[1440px] px-5 pb-20 md:px-10 lg:px-20">
+      <section className="shell pb-20">
         <div className="grid gap-x-8 gap-y-16 sm:grid-cols-2">
           {projects.map((p) => (
             <Link key={p.slug} href={`/portfolio/${p.slug}`} className="group block">
@@ -47,11 +48,19 @@ export default function PortfolioPage() {
               </div>
               <p className="label-caps mt-2 text-accent">{p.category}</p>
               <p className="mt-3 font-light leading-relaxed text-muted">{p.summary}</p>
-              <span className="link-gold label-caps mt-4 inline-block">View project</span>
+              <span className="link-gold label-caps mt-4 inline-block">
+                View project
+                <span className="sr-only"> — {p.name}</span>
+              </span>
             </Link>
           ))}
         </div>
       </section>
+
+      <CallToAction
+        heading="Every project starts with a conversation."
+        secondary={{ href: "/philosophy", label: "Read the manifesto" }}
+      />
     </>
   );
 }

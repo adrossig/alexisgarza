@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function InquirePage() {
   return (
-    <section className="mx-auto max-w-[1440px] px-5 pb-20 pt-14 md:px-10 md:pt-20 lg:px-20">
+    <section className="shell pb-20 pt-14 md:pt-20">
       {/* Title + intro */}
       <div className="max-w-3xl">
         <h1 className="font-display text-6xl font-semibold leading-[1.02] tracking-[-0.02em] md:text-8xl">
