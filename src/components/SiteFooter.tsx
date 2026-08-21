@@ -26,8 +26,7 @@ export default function SiteFooter() {
               Alexis Garza
             </Link>
             <p className="mt-4 max-w-xs text-sm font-light text-muted">
-              Creating sophisticated environments that balance Latin warmth with modern
-              precision.
+              Interior design studio. Latin warmth, held to an exact plan.
             </p>
             <a
               href="mailto:studio@alexisgarza.com"

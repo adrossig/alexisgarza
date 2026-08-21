@@ -5,7 +5,7 @@ import InquireForm from "./InquireForm";
 export const metadata: Metadata = {
   title: "Inquire — Alexis Garza",
   description:
-    "Begin a conversation with Alexis Garza about your home or hospitality interior design project.",
+    "Start a project with Alexis Garza. Tell the studio about your home or hospitality space.",
 };
 
 export default function InquirePage() {
@@ -17,9 +17,9 @@ export default function InquirePage() {
           Begin a Conversation
         </h1>
         <p className="mt-8 max-w-xl text-lg font-light leading-relaxed text-muted">
-          We accept a limited number of commissions each year to ensure uncompromising
-          quality and dedicated attention to detail. Share the vision for your space, and
-          let us explore the possibilities of our collaboration.
+          We take on a handful of projects a year, so each one gets the studio&apos;s own
+          hours. Tell us about the space, your timing, and what bothers you about the
+          room now.
         </p>
       </div>
 

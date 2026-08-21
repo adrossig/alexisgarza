@@ -19,8 +19,8 @@ export default function PortfolioPage() {
           Selected Works
         </h1>
         <p className="mt-8 max-w-xl text-lg font-light text-muted">
-          A close look at recent homes and spaces — each one led end to end, from first
-          sketch to final styling.
+          Recent homes and spaces, each led end to end from first sketch to final
+          styling.
         </p>
       </section>
 
@@ -58,7 +58,7 @@ export default function PortfolioPage() {
       </section>
 
       <CallToAction
-        heading="Every project starts with a conversation."
+        heading="Tell us about the space."
         secondary={{ href: "/philosophy", label: "Read the manifesto" }}
       />
     </>

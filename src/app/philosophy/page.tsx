@@ -5,24 +5,24 @@ import CallToAction from "@/components/CallToAction";
 export const metadata: Metadata = {
   title: "Philosophy — Alexis Garza",
   description:
-    "Contemporary Latin design ethos — interiors rooted in raw, sun-drenched warmth balanced with European precision.",
+    "Latin warmth and European restraint in the same room. How the studio works, from first walk-through to styling day.",
 };
 
 const process = [
   {
     n: "01",
     title: "Discovery",
-    body: "Understanding the soul of the space and the client's vision. We delve deep into lifestyle, aspirations, and the architectural context.",
+    body: "We walk the space with you and ask how you actually live in it. Who eats where, which rooms sit unused, what the light does at four in the afternoon.",
   },
   {
     n: "02",
     title: "Concept",
-    body: "Translating narratives into tangible materials. Developing a fluid editorial layout of space, selecting tactile materials and tonal palettes.",
+    body: "Plans, elevations, and a materials board you can hold. Palette, joinery, and furniture settle here, before anything is ordered.",
   },
   {
     n: "03",
     title: "Execution",
-    body: "Rigorous curation and exacting implementation. Overseeing the artisanal craftsmanship to ensure the final space is quiet, expensive, and intentional.",
+    body: "We run the site: trades scheduled, samples signed off, finishes checked against the board. The last day is styling, down to the books on the table.",
   },
 ];
 
@@ -58,12 +58,12 @@ export default function PhilosophyPage() {
       <section className="mx-auto max-w-3xl px-5 pb-16 pt-14 text-center md:pt-20">
         <p className="label-caps text-accent">Our Philosophy</p>
         <h1 className="mt-6 font-display text-5xl font-semibold leading-[1.05] tracking-[-0.02em] md:text-6xl">
-          Contemporary Latin Design Ethos.
+          Latin Warmth, European Restraint.
         </h1>
         <p className="mx-auto mt-8 max-w-xl font-light leading-relaxed text-muted">
-          Rooted in the raw, sun-drenched warmth of Latin heritage, balanced
-          with the precision of European minimalism. We create spaces that are
-          deeply tactile, intentional, and profoundly human.
+          Sun-bleached plaster and terracotta, held to the tight line of European
+          minimalism. A house that reads calm without going cold, and asks to be
+          touched.
         </p>
       </section>
 
@@ -79,15 +79,15 @@ export default function PhilosophyPage() {
               </h2>
               <div className="mt-6 max-w-md space-y-4 font-light leading-relaxed text-muted">
                 <p>
-                  The essence of our studio is built on the belief that luxury
-                  is found in the handcrafted and the organic. We eschew the
-                  sterile in favor of rich color washes, generous whitespace,
-                  and textures that invite touch.
+                  Luxury, to us, is the mark of a hand. Plaster laid by trowel,
+                  wood with the grain still in it, wool you feel underfoot.
+                  Colour arrives in washes rather than accents, and we leave
+                  rooms emptier than most clients expect.
                 </p>
                 <p>
-                  Every project is treated as a curated private gallery — quiet,
-                  expensive, and deeply intentional. We bridge the gap between
-                  architectural rigor and emotional resonance.
+                  We hang a house the way you would hang a gallery: fewer
+                  pieces, more air, everything placed on purpose. The plan holds
+                  to the architecture, and the materials do the warming.
                 </p>
               </div>
               <div className="relative mt-10 aspect-[4/3] overflow-hidden">
@@ -170,9 +170,8 @@ export default function PhilosophyPage() {
                 Awards.
               </h2>
               <p className="mt-6 max-w-sm font-light leading-relaxed text-muted">
-                Our commitment to bridging Latin warmth with modernist restraint
-                has been recognized by leading architectural and design
-                publications globally.
+                Design editors have covered the studio since 2020, in print and
+                online. A selection below.
               </p>
             </div>
             <ul>
@@ -220,7 +219,7 @@ export default function PhilosophyPage() {
         </ul>
       </section>
 
-      <CallToAction heading="Ready to start your own project?" />
+      <CallToAction heading="Thinking about your own place?" />
     </>
   );
 }

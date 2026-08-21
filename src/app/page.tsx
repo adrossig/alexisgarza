@@ -30,8 +30,9 @@ export default function Page() {
                 Sculpting Space with Tactile Warmth
               </h1>
               <p className="mt-6 max-w-md text-base font-light leading-relaxed text-foreground/90 md:text-lg">
-                We create environments that are deeply intentional, blending the raw
-                beauty of artisanal heritage with uncompromising modern precision.
+                Interiors built from hand-worked materials and measured proportion.
+                Plaster, marble, linen, brass, chosen for how a room feels at seven in
+                the evening.
               </p>
               <Link
                 href="/portfolio"
@@ -56,10 +57,10 @@ export default function Page() {
               Artisanship
             </h2>
             <p className="mt-6 max-w-md font-light leading-relaxed text-muted">
-              We believe spaces should evoke the quiet, expensive feeling of a private
-              gallery. Our approach favors the hand-crafted and the organic, curated
-              with a rigorous editorial standard. We avoid the sterile in favor of rich
-              color washes and generous volumes of light.
+              A room should hold its quiet the way a gallery does. We work with
+              hand-made pieces and natural materials, then edit hard: few objects, each
+              one worth the space it takes. Colour goes on in washes, and the light gets
+              room to move.
             </p>
             <Link
               href="/philosophy"

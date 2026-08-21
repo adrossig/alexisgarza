@@ -8,8 +8,7 @@ export default function NotFound() {
         This room doesn&apos;t exist.
       </h1>
       <p className="mt-8 max-w-md font-light leading-relaxed text-muted">
-        The page you were looking for has moved or was never here. The work is all
-        still a click away.
+        That page moved, or it never existed. The work is still here.
       </p>
       <div className="mt-10 flex flex-wrap gap-4">
         <Link
