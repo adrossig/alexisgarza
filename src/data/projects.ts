@@ -1,5 +1,5 @@
 /** Stand-in still used by projects that have not been photographed yet. */
-const PLACEHOLDER_IMAGE = "/Image.png";
+const PLACEHOLDER_IMAGE = "/projects/los-cedros/01-living-room.jpg";
 
 export type Project = {
   slug: string;

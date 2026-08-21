@@ -34,8 +34,8 @@ export default function InquirePage() {
         <div>
           <div className="relative aspect-[4/5] overflow-hidden">
             <Image
-              src="/Image.png"
-              alt="The Alexis Garza studio at work"
+              src="/projects/los-vitrales/02-living-dining.jpeg"
+              alt="Sheer linen and white marble in the Los Vitrales living and dining room"
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
               className="img-grade object-cover"
@@ -65,10 +65,10 @@ export default function InquirePage() {
                   studio@alexisgarza.com
                 </a>
                 <a
-                  href="tel:+528186564134"
+                  href="tel:+5218186564134"
                   className="block transition hover:text-accent"
                 >
-                  +52 81 8656 4134
+                  +52 1 81 8656 4134
                 </a>
               </div>
             </div>

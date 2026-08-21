@@ -14,8 +14,8 @@ export default function Page() {
       <section className="relative">
         <div className="relative h-[68svh] min-h-[460px] w-full">
           <Image
-            src="/Image.png"
-            alt="A warm, light-filled living room with bouclé furniture and terracotta floors"
+            src="/projects/gardenia/01-living-room.jpg"
+            alt="The Gardenia living room — charcoal plaster, tufted linen, and a marble block table beneath a bronze-framed canvas"
             fill
             priority
             sizes="100vw"
@@ -70,8 +70,8 @@ export default function Page() {
           </div>
           <div className="relative aspect-[4/5] overflow-hidden md:-mt-12">
             <Image
-              src="/Image.png"
-              alt="Detail of hand-crafted textiles and natural materials"
+              src="/projects/gardenia/02-dining-room.jpg"
+              alt="The Gardenia dining room — a green marble table against sheer linen and exposed brick"
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
               className="img-grade object-cover"

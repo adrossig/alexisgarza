@@ -92,8 +92,8 @@ export default function PhilosophyPage() {
               </div>
               <div className="relative mt-10 aspect-[4/3] overflow-hidden">
                 <Image
-                  src="/Image.png"
-                  alt="Sketches and material samples on a studio desk"
+                  src="/projects/los-cedros/05-dining-detail.jpg"
+                  alt="A bronze figure and textured canvas against blush plaster at Los Cedros"
                   fill
                   sizes="(max-width: 768px) 100vw, 40vw"
                   className="img-grade object-cover"

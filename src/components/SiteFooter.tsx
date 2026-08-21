@@ -1,8 +1,9 @@
 import Link from "next/link";
 
 const social = [
-  { label: "Instagram", href: "https://instagram.com" },
-  { label: "Pinterest", href: "https://pinterest.com" },
+  { label: "Instagram", href: "https://www.instagram.com/casa.garza_/" },
+  { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61570955280081" },
+  // { label: "Pinterest", href: "https://pinterest.com" },
 ];
 
 const company = [
