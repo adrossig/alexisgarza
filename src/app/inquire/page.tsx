@@ -47,11 +47,9 @@ export default function InquirePage() {
             <div>
               <p className="label-caps text-accent">The Studio</p>
               <address className="mt-4 not-italic font-light leading-relaxed text-foreground/90">
-                144 Minimalist Avenue
+                Monterrey, Nuevo León
                 <br />
-                Design District, Suite 400
-                <br />
-                Marbella, 29600
+                México
               </address>
             </div>
 

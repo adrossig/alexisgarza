@@ -26,31 +26,6 @@ const process = [
   },
 ];
 
-const awards = [
-  { name: "Architectural Digest", detail: "2023 / Feature" },
-  { name: "Elle Decor", detail: "2022 / Designer of the Year" },
-  { name: "Dezeen Awards", detail: "2021 / Interior Project Longlist" },
-  { name: "Vogue Living", detail: "2020 / Emerging Talent" },
-];
-
-const press = [
-  {
-    name: "Architectural Digest",
-    title: "The New Vanguard of Latin American Minimalism",
-    date: "October 2023",
-  },
-  {
-    name: "Elle Decor",
-    title: "How Alexis Garza is Redefining Warmth in Modern Spaces",
-    date: "August 2023",
-  },
-  {
-    name: "Vogue Living",
-    title: "Inside the Sun-Drenched Studio of the Year",
-    date: "May 2023",
-  },
-];
-
 export default function PhilosophyPage() {
   return (
     <>
@@ -67,7 +42,7 @@ export default function PhilosophyPage() {
         </p>
       </section>
 
-      {/* Sophisticated Artisanship + quote — tonal layer */}
+      {/* Sophisticated Artisanship + portrait — tonal layer */}
       <section className="bg-card">
         <div className="shell py-16 md:py-20">
           <div className="grid gap-12 md:grid-cols-2 md:gap-20">
@@ -115,21 +90,6 @@ export default function PhilosophyPage() {
               </div>
             </div>
           </div>
-
-          {/* Pull quote */}
-          <figure className="mx-auto mt-16 max-w-3xl text-center md:mt-20">
-            <span className="font-display text-6xl leading-none text-accent">
-              &rdquo;
-            </span>
-            <blockquote className="mt-2 font-display text-3xl italic leading-snug md:text-4xl">
-              Alexis Garza doesn&apos;t just design rooms: they curate
-              experiences. Our home now feels like a living gallery of our
-              heritage and future.
-            </blockquote>
-            <figcaption className="label-caps mt-8 text-accent">
-              Elena R., Madrid
-            </figcaption>
-          </figure>
         </div>
       </section>
 
@@ -157,66 +117,6 @@ export default function PhilosophyPage() {
             </div>
           ))}
         </div>
-      </section>
-
-      {/* Recognition & Awards — tonal layer */}
-      <section className="bg-card">
-        <div className="shell py-16 md:py-20">
-          <div className="grid gap-12 md:grid-cols-2 md:gap-20">
-            <div>
-              <h2 className="font-display text-4xl font-medium leading-tight">
-                Recognition &amp;
-                <br />
-                Awards.
-              </h2>
-              <p className="mt-6 max-w-sm font-light leading-relaxed text-muted">
-                Design editors have covered the studio since 2020, in print and
-                online. A selection below.
-              </p>
-            </div>
-            <ul>
-              {awards.map((award) => (
-                <li
-                  key={award.name}
-                  className="flex items-center justify-between gap-6 border-t border-foreground/10 py-6 last:border-b"
-                >
-                  <span className="font-display text-xl">{award.name}</span>
-                  <span className="label-caps whitespace-nowrap text-right text-muted">
-                    {award.detail}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* In the Press */}
-      <section className="shell py-16 md:py-20">
-        <div className="text-center">
-          <h2 className="font-display text-4xl font-medium md:text-5xl">
-            In the Press
-          </h2>
-          <span className="mx-auto mt-6 block h-px w-16 bg-accent" />
-        </div>
-        <ul className="mx-auto mt-12 max-w-3xl">
-          {press.map((item) => (
-            <li
-              key={item.name}
-              className="flex items-start justify-between gap-6 border-t border-foreground/10 py-8 last:border-b"
-            >
-              <div>
-                <p className="font-display text-2xl">{item.name}</p>
-                <p className="mt-2 font-light italic text-muted">
-                  {item.title}
-                </p>
-              </div>
-              <span className="label-caps whitespace-nowrap text-muted">
-                {item.date}
-              </span>
-            </li>
-          ))}
-        </ul>
       </section>
 
       <CallToAction heading="Thinking about your own place?" />
